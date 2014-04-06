@@ -13,8 +13,8 @@ namespace Tarabica.DataServices.Http.Twitter
 {
     public class TwitterDataService : ITwitterDataService
     {
-        private const string consumerKey = "lWHkeCA2pFreYfhj0KgrUQ";
-        private const string consumerSecret = "U6ubDZXc2xjWzbyiXTPIqGlWFER7P2vafbnNbOHIc";
+        private const string consumerKey = "YOUR TWITTER CONSUMER KEY";
+        private const string consumerSecret = "YOUR TWITTER CONSUMER SECRET";
         private const string requestTokenUrl = "https://api.twitter.com/oauth2/token";
         private const string searchTweetsUrl = "https://api.twitter.com/1.1/search/tweets.json";
 
