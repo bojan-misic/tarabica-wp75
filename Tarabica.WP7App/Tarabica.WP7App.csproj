@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4FC845F-F4AC-47E2-BECF-A24AAEF7CF51}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tarabica.WP7App</RootNamespace>
+    <AssemblyName>Tarabica.WP7App</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>Tarabica.WP7App.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>Tarabica.WP7App.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Funq">
+      <HintPath>..\libs\Funq\Funq.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\sl4-windowsphone71\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.1.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\libs\Prism\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\libs\Prism\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Device" />
+    <Reference Include="System.Observable" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.2\lib\windowsphone71\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.2\lib\windowsphone71\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.2\lib\windowsphone71\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.3\lib\windowsphone71\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="mscorlib.extensions" />
+    <Reference Include="System.Xml.XPath">
+      <HintPath>..\libs\System.Xml.Xpath\System.Xml.XPath.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Behaviours\BindablePanoramaBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviours\BindingChangedEventArgs.cs" />
+    <Compile Include="Infrastructure\Behaviours\BindingListener.cs" />
+    <Compile Include="Infrastructure\Behaviours\InsertBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviours\MouseEnterBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviours\MouseLeaveBehaviour.cs" />
+    <Compile Include="Infrastructure\Behaviours\PopupHideOnLeftMouseUp.cs" />
+    <Compile Include="Infrastructure\ContainerLocator.cs" />
+    <Compile Include="Infrastructure\Controls\HtmlTextBlock.cs" />
+    <Compile Include="Infrastructure\Controls\HtmlTextBlockExtensions.cs" />
+    <Compile Include="Infrastructure\Controls\PathControl.cs" />
+    <Compile Include="Infrastructure\Controls\SplitPanel.cs" />
+    <Compile Include="Infrastructure\Converters\GroupToBrushValueConverter.cs" />
+    <Compile Include="Infrastructure\Converters\StringToCharConverter.cs" />
+    <Compile Include="Infrastructure\Converters\VisibilityConverter.cs" />
+    <Compile Include="Infrastructure\GroupList.cs" />
+    <Compile Include="Infrastructure\LowMemoryHelper.cs" />
+    <Compile Include="Infrastructure\PhoneApplicationPageExtensions.cs" />
+    <Compile Include="Infrastructure\PlaceImage.cs" />
+    <Compile Include="Infrastructure\ThemeLocator.cs" />
+    <Compile Include="Infrastructure\Tombstoning.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ApplicationFrameNavigationService.cs" />
+    <Compile Include="Services\INavigationService.cs" />
+    <Compile Include="ViewModels\ConferenceInfoViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SessionDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SessionInfoViewModel.cs" />
+    <Compile Include="ViewModels\SessionListViewModel.cs" />
+    <Compile Include="ViewModels\SpeakerDetailsViewModel.cs" />
+    <Compile Include="ViewModels\SpeakerInfoViewModel.cs" />
+    <Compile Include="ViewModels\SpeakerListViewModel.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\ConferenceInfoView.xaml.cs" />
+    <Compile Include="Views\MainView.xaml.cs" />
+    <Compile Include="Views\SessionDetailsView.xaml.cs" />
+    <Compile Include="Views\SessionListView.xaml.cs" />
+    <Compile Include="Views\SpeakerDetailsView.xaml.cs" />
+    <Compile Include="Views\SpeakerListView.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png" />
+    <Content Include="ApplicationTileIcon.png" />
+    <Resource Include="Assets\AgendaTitle.png" />
+    <Content Include="Assets\ALM.png" />
+    <Content Include="Assets\APM.png" />
+    <Resource Include="Assets\Background.jpg" />
+    <Resource Include="Assets\Background0.jpg" />
+    <Resource Include="Assets\Background1.jpg" />
+    <Resource Include="Assets\Background2.jpg" />
+    <Resource Include="Assets\Background3.jpg" />
+    <Content Include="Assets\BioTitle.png" />
+    <Content Include="Assets\CLD.png" />
+    <Content Include="Assets\Dark\appbar.full.heart.png" />
+    <Content Include="Assets\Dark\appbar.semi.heart.png" />
+    <Content Include="Assets\Dark\feature.pushpin.png" />
+    <Content Include="Assets\DBI.png" />
+    <Content Include="Assets\DEV.png" />
+    <Content Include="Assets\DVC.png" />
+    <Content Include="Assets\DYN.png" />
+    <Content Include="Assets\Dynamics CRM.png" />
+    <Content Include="Assets\feature.mail.png" />
+    <Content Include="Assets\feature.settings.png" />
+    <Content Include="Assets\feature.sync.png" />
+    <Content Include="Assets\GAM.png" />
+    <Resource Include="Assets\Hash.png" />
+    <Content Include="Assets\Light\appbar.full.heart.png" />
+    <Content Include="Assets\Light\appbar.semi.heart.png" />
+    <Content Include="Assets\Light\feature.pushpin.png" />
+    <Resource Include="Assets\Map.png" />
+    <Content Include="Assets\MSC.png" />
+    <Content Include="Assets\Predavaci.png" />
+    <Resource Include="Assets\PredavaciTitle.png" />
+    <Content Include="Assets\SES.png" />
+    <Resource Include="Assets\speaker-no-pic.png" />
+    <Content Include="Assets\SRV.png" />
+    <Resource Include="Assets\TarabicaTitle.png" />
+    <Resource Include="Assets\track-no-pic.png" />
+    <Resource Include="Assets\tweet-no-pic.png" />
+    <Content Include="Assets\UX.png" />
+    <Content Include="Assets\WEB.png" />
+    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Phone.Controls\Phone.Controls.csproj">
+      <Project>{71A41463-066F-444A-B774-5FB036C913A0}</Project>
+      <Name>Phone.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Phone7.Fx.Preview\Phone7.Fx.Preview.csproj">
+      <Project>{B55A0F90-2B5A-4C4B-88F4-013AA1629866}</Project>
+      <Name>Phone7.Fx.Preview</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarabica.DataServices\Tarabica.DataServices.csproj">
+      <Project>{851B1398-D73E-4E00-9169-548915598513}</Project>
+      <Name>Tarabica.DataServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tarabica.Model\Tarabica.Model.csproj">
+      <Project>{AB33B35C-DE31-4C49-8644-536EA9C74F11}</Project>
+      <Name>Tarabica.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Styles\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ConferenceInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SessionDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SessionListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpeakerDetailsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpeakerListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

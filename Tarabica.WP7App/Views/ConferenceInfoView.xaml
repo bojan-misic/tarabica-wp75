@@ -1,0 +1,143 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Tarabica.WP7App.Views.ConferenceInfoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:b="clr-namespace:Tarabica.WP7App.Infrastructure.Behaviours"
+    xmlns:prismInteractivity="clr-namespace:Microsoft.Practices.Prism.Interactivity;assembly=Microsoft.Practices.Prism.Interactivity"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:prismInteractionRequest="clr-namespace:Microsoft.Practices.Prism.Interactivity.InteractionRequest;assembly=Microsoft.Practices.Prism.Interactivity"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="White"
+    
+    Style="{StaticResource TransitionPageStyle}"
+    
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=ConferenceInfoViewModel}"
+    
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="Tarabica info" Foreground="White">
+            <controls:Pivot.Background>
+                <ImageBrush ImageSource="/Tarabica.WP7App;component/Assets/Background3.jpg"/>
+            </controls:Pivot.Background>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="lokacija">
+                <StackPanel Orientation="Vertical">
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Height="90" Width="90" BorderBrush="White">
+                            <Button.Content>
+                                <Image Source="/Assets/Dark/feature.pushpin.png" Height="48" Width="48"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button.Content>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <i:InvokeCommandAction Command="{Binding BingMapCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <TextBlock Grid.Column ="1" VerticalAlignment="Center" TextAlignment="Left" Margin="30,0,0,0"
+                            Text="Kumodraška 261, Beograd, Srbija (Univerzitet Singidunum)" TextWrapping="Wrap" Foreground="White"/>
+                    </Grid>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Height="90" Width="90" BorderBrush="White">
+                            <Button.Content>
+                                <Image Source="/Assets/feature.mail.png" Height="48" Width="48"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button.Content>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Tap">
+                                    <i:InvokeCommandAction Command="{Binding EmailCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" TextAlignment="Left" Foreground="White" Margin="30,0,0,0"
+                            Text="Kontakt"/>
+                    </Grid>
+                    <Image Opacity="0.9" VerticalAlignment="Top" Margin="10,15,10,10" Source="/Tarabica.WP7App;component/Assets/Map.png" HorizontalAlignment="Center">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Tap">
+                                <i:InvokeCommandAction Command="{Binding BingMapCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Image>
+                </StackPanel>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="o aplikaciji">
+                <Grid>
+                    <Rectangle>
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="Transparent" Offset="0"/>
+                                <GradientStop Color="#77000000" Offset="0.3"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <RichTextBox VerticalAlignment="Top" Foreground="White">
+                        <Paragraph>
+                            <Run Text="Verzija 1.2.2.4" FontFamily="{StaticResource PhoneFontFamilyLight}" />
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph>
+                            <Run Text="Razvojni tim:" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph>
+                            <Run Text="Bojan Mišić"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Text="Srđan Božović"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Text="Stanko Nikolić"/>
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph>                          
+                            <Run Text="Mladen Kesić - fotografije Belgrade night" FontStyle="Italic"/>
+                        </Paragraph>
+                        <Paragraph>
+                            <Run Text="http://mladenkesic.wordpress.com/"/>
+                        </Paragraph>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph/>
+                        <Paragraph>
+                            <Run Text="© 2014 | Tarabica # IT Conference - sva prava zadržana."/>
+                        </Paragraph>
+                    </RichTextBox>
+                </Grid>
+
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{dec97fdb-bc8a-4fce-aed5-ab70124fd3d8}" Title="Tarabica" RuntimeType="Silverlight" Version="1.2.2.4" Genre="apps.normal" Author="MSP Team" Description="Ova aplikacija omogućava posetiocima konferencije Tarabica da saznaju nešto više o predavačima i predavanjima na konferenciji." Publisher="MSP Team">
+    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Views/MainView.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="Tarabica.WP7AppToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">ApplicationTileIcon.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>Tarabica</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>

@@ -1,0 +1,170 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Tarabica.WP7App.Views.SessionListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:b="clr-namespace:Tarabica.WP7App.Infrastructure.Behaviours"
+    xmlns:prismInteractivity="clr-namespace:Microsoft.Practices.Prism.Interactivity;assembly=Microsoft.Practices.Prism.Interactivity"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:prismInteractionRequest="clr-namespace:Microsoft.Practices.Prism.Interactivity.InteractionRequest;assembly=Microsoft.Practices.Prism.Interactivity"
+    xmlns:behaviours="clr-namespace:Tarabica.WP7App.Infrastructure.Behaviours"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="White"
+    
+    Style="{StaticResource TransitionPageStyle}"
+    
+    DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=SessionListViewModel}"
+    
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding PageLoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <phone:PhoneApplicationPage.Resources>
+        <!-- RESOURCES -->
+
+        <!-- The group header template, for groups in the main list -->
+        <DataTemplate x:Key="sessionGroupHeader">
+            <Border Background="#ff65b7dd" Padding="{StaticResource PhoneTouchTargetOverhang}" Margin="0,20,0,20">
+                <TextBlock Text="{Binding Key}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White"/>
+            </Border>
+        </DataTemplate>
+
+        <!-- The template for groups when they are items in the "jump list". Not setting -->
+        <!-- the GroupItemTemplate property will disable "jump list" functionality. -->
+        <DataTemplate x:Key="groupItemHeader">
+            <Border Background="#ff65b7dd" Margin="{StaticResource PhoneTouchTargetOverhang}" Padding="{StaticResource PhoneTouchTargetOverhang}">
+                <TextBlock Text="{Binding Key}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White"/>
+            </Border>
+        </DataTemplate>
+
+        <!-- The template for session items -->
+        <DataTemplate x:Key="session0ItemTemplate">
+            <Grid Margin="{StaticResource PhoneTouchTargetOverhang}" >
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="dodaj u odabrano" Visibility="{Binding IsFavourite,Converter={StaticResource NegativeVisibilityConverter}}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.ToggleFavCommand0, ElementName=sessions0}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </toolkit:MenuItem>
+                        <toolkit:MenuItem Header="ukloni iz odabranog" Visibility="{Binding IsFavourite,Converter={StaticResource VisibilityConverter}}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding Path=DataContext.ToggleFavCommand0, ElementName=sessions0}" CommandParameter="{Binding}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </toolkit:MenuItem>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Margin="-6,0,6,0" Fill="{Binding TrackBackgroundColor}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                <StackPanel Grid.Column="0" Margin="-6,0,6,0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding TrackHasThreeChars, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock Text="{Binding TrackCode, Converter={StaticResource StringToCharConverter}, ConverterParameter=0}" Foreground="White" TextAlignment="Center" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="30"/>
+                    <TextBlock Text="{Binding TrackCode, Converter={StaticResource StringToCharConverter}, ConverterParameter=1}" Foreground="White" TextAlignment="Center" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="30" />
+                    <TextBlock Text="{Binding TrackCode, Converter={StaticResource StringToCharConverter}, ConverterParameter=2}" Foreground="White" TextAlignment="Center" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="30" />
+                </StackPanel>
+                <StackPanel Grid.Column="0" Margin="-6,0,6,0" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding TrackHasThreeChars, Converter={StaticResource NegativeVisibilityConverter}}">
+                    <TextBlock Text="{Binding TrackCode, Converter={StaticResource StringToCharConverter}, ConverterParameter=0}" Foreground="White" TextAlignment="Center" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="30"/>
+                    <TextBlock Text="{Binding TrackCode, Converter={StaticResource StringToCharConverter}, ConverterParameter=1}" Foreground="White" TextAlignment="Center" FontFamily="{StaticResource PhoneFontFamilySemiBold}" FontSize="30" />
+                </StackPanel>
+                <Grid Grid.Column="1" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" Style="{StaticResource PhoneTextLargeStyle}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" TextWrapping="Wrap" Margin="12,-10,12,6"/>
+                    <!--<TextBlock Text="{Binding MinorInfo}" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" Margin="12,3,0,9"  FontFamily="{StaticResource PhoneFontFamilyNormal}"/>-->
+                    <TextBlock Grid.Row="1" Text="{Binding Speakers}" Foreground="White" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap" Margin="12,-30,12,9" FontFamily="{StaticResource PhoneFontFamilyNormal}"/>
+                    <Grid VerticalAlignment="Bottom" Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="1.4*"/>
+                            <ColumnDefinition Width="1.4*"/>
+                            <ColumnDefinition Width="2.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="&#x2665;" FontSize="22" Foreground="#ffef5124" Margin="12,-2,0,0" HorizontalAlignment="Left" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavourite,Converter={StaticResource VisibilityConverter}}"/>
+                        <Rectangle Grid.Column="2" Fill="{Binding TrackColor}" Margin="0,0,6,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Level}" Margin="-1,-2,6,0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <!--<Rectangle Grid.Column="2" Fill="{Binding TrackColor}" Margin="0,0,6,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Language}" Margin="-1,-2,6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                        <Rectangle Grid.Column="3" Fill="{Binding TrackColor}" Margin="0,0,6,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                        <TextBlock Grid.Column="3" Foreground="White" Text="{Binding Room}" Margin="-1,-2,6,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Tap">
+                        <i:InvokeCommandAction Command="{Binding Path=DataContext.SessionSelectedCommand, ElementName=sessions0}" CommandParameter="{Binding}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Grid>
+        </DataTemplate>
+        <!-- The template for session items -->
+
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Tarabica.WP7App;component/Assets/Background1.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <Grid HorizontalAlignment="Center" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="/Tarabica.WP7App;component/Assets/Hash.png" Stretch="None" HorizontalAlignment="Left" Margin="0,10,10,10"/>
+            <Image Grid.Column="1" Source="/Tarabica.WP7App;component/Assets/AgendaTitle.png" Stretch="None" HorizontalAlignment="Center" Margin="20,3,0,0"/>
+        </Grid>
+
+        <Rectangle Grid.Row="2" >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Transparent" Offset="0"/>
+                    <GradientStop Color="#88000000" Offset="0.3"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="2" Margin="12,0,12,0">
+            <StackPanel Orientation="Vertical" Visibility="{Binding IsSessions0Empty, Mode=TwoWay, Converter={StaticResource VisibilityConverter}}" Margin="0,10,0,0">
+                <TextBlock FontSize="32" FontFamily="{StaticResource PhoneFontFamilyNormal}" Text="Lista je prazna :(" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                <TextBlock FontSize="20" FontFamily="{StaticResource PhoneFontFamilyLight}" Text="Dodajte predavanja u odabrana dugim pritiskom na predavanje u listi predavanja ili iz menija u opisu predavanja." TextWrapping="Wrap" TextAlignment="Center"/>
+            </StackPanel>
+            <toolkit:LongListSelector x:Name="sessions0" Visibility="{Binding IsSessions0Empty, Mode=TwoWay, Converter={StaticResource NegativeVisibilityConverter}}"
+                    ItemsSource="{Binding Sessions0}"                     
+                    GroupHeaderTemplate="{StaticResource sessionGroupHeader}"
+                    GroupItemTemplate="{StaticResource groupItemHeader}"
+                    ItemTemplate="{StaticResource session0ItemTemplate}"
+                    Background="Transparent">
+            </toolkit:LongListSelector>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
